@@ -407,6 +407,11 @@ Prefab:
       propertyPath: instantiationId
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114893717559681616, guid: 23fc59362ba1e264eb5b636821ad929a,
+        type: 2}
+      propertyPath: tiltVertical
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 23fc59362ba1e264eb5b636821ad929a, type: 2}
   m_IsPrefabParent: 0
@@ -517,6 +522,8 @@ GameObject:
   - component: {fileID: 716856156}
   - component: {fileID: 716856155}
   - component: {fileID: 716856154}
+  - component: {fileID: 716856159}
+  - component: {fileID: 716856160}
   m_Layer: 0
   m_Name: cyanSphere
   m_TagString: Untagged
@@ -601,6 +608,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &716856159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 716856153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6161e46f61226814793bc3363caa90eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  calibrate: 0
+  selected: 0
+--- !u!114 &716856160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 716856153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d5a0a60fbe897549ad0bfe2039f12b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HostTransform: {fileID: 0}
+  DistanceScale: 2
+  IsKeepUpright: 0
+  IsOrientTowardsUser: 1
+  IsDraggingEnabled: 1
 --- !u!1001 &718891513
 Prefab:
   m_ObjectHideFlags: 0

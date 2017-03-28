@@ -32,10 +32,15 @@ namespace EasyWiFi.ServerControls
         GyroControllerType[] gyro = new GyroControllerType[EasyWiFiConstants.MAX_CONTROLLERS];
         int currentNumberControllers = 0;
         Quaternion orientation;
-
-        void OnEnable()
+        void Start()
         {
-            script=this.GetComponent<Spawnable>();
+            script = this.GetComponent<Spawnable>();
+            UpdateCalibration(true);
+            RecalculateReferenceRotation();
+        }
+            void OnEnable()
+        {
+            
             EasyWiFiController.On_ConnectionsChanged += checkForNewConnections;
 
             //do one check at the beginning just in case we're being spawned after startup and after the callbacks

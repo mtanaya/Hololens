@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 65463149248247552}
   - component: {fileID: 114771845863161734}
   - component: {fileID: 114879244000943380}
+  - component: {fileID: 114893717559681616}
   m_Layer: 31
   m_Name: cardboardBox_02
   m_TagString: Untagged
@@ -327,3 +328,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   control: Gyro
   player: 0
+--- !u!114 &114893717559681616
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78ef58e44399d5d48974fcc540578051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  control: Accelerometer
+  player: 0
+  tiltHorizontal: 0
+  tiltVertical: 2
+  action: 0
+  sensitivity: 0.1
