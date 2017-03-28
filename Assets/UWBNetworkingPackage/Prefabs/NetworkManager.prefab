@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4000010736516072}
   - component: {fileID: 114000011044434276}
   - component: {fileID: 114774300301172622}
+  - component: {fileID: 114158345322444636}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -59,6 +60,17 @@ MonoBehaviour:
   Oculus: 0
   Port: 25827
   RoomName: Hololens
+--- !u!114 &114158345322444636
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013332197718}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd925fb1e70aedb4aa98f4558bec3baf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114774300301172622
 MonoBehaviour:
   m_ObjectHideFlags: 1
