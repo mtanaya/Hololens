@@ -2,6 +2,7 @@
 using System.Collections;
 using EasyWiFi.Core;
 using System;
+using HoloToolkit.Unity.SpatialMapping;
 
 namespace EasyWiFi.ServerControls
 {
@@ -11,7 +12,7 @@ namespace EasyWiFi.ServerControls
     {
         private const float lowPassFilterFactor = 0.2f;
         Quaternion quaternion;
-        private readonly Quaternion baseIdentity = Quaternion.Euler(90, 0, 0);
+        private readonly Quaternion baseIdentity = Quaternion.Euler(90,0, 0);
         private readonly Quaternion landscapeRight = Quaternion.Euler(0, 0, 90);
         private readonly Quaternion landscapeLeft = Quaternion.Euler(0, 0, -90);
         private readonly Quaternion upsideDown = Quaternion.Euler(0, 0, 180);
@@ -20,11 +21,12 @@ namespace EasyWiFi.ServerControls
         private Quaternion calibration = Quaternion.identity;
         private Quaternion baseOrientation = Quaternion.Euler(90, 0, 0);
         private Quaternion baseOrientationRotationFix = Quaternion.identity;
-
+        private bool firsttime = true;
         float dtime = 0;
 
         private Quaternion referanceRotation = Quaternion.identity;
-        Spawnable script; 
+        Spawnable script;
+        Controller script1;
         public string control = "Gyro";
         public EasyWiFiConstants.PLAYER_NUMBER player = EasyWiFiConstants.PLAYER_NUMBER.Player1;
 
@@ -35,8 +37,9 @@ namespace EasyWiFi.ServerControls
         void Start()
         {
             script = this.GetComponent<Spawnable>();
-            UpdateCalibration(true);
-            RecalculateReferenceRotation();
+            if(script==null)
+                script1= this.GetComponent<Controller>();
+
         }
             void OnEnable()
         {
@@ -65,6 +68,7 @@ namespace EasyWiFi.ServerControls
                 if (gyro[i] != null && gyro[i].serverKey != null && gyro[i].logicalPlayerNumber != EasyWiFiConstants.PLAYERNUMBER_DISCONNECTED)
                 {
                     mapDataStructureToAction(i);
+                    
                 }
             }
         }
@@ -80,13 +84,29 @@ namespace EasyWiFi.ServerControls
             quaternion = new Quaternion(orientation.x, orientation.y, orientation.z, orientation.w);
             transform.localRotation = Quaternion.Slerp(transform.localRotation,
                 cameraBase * (ConvertRotation(referanceRotation * quaternion) * GetRotFix()), lowPassFilterFactor);
+            if (firsttime)
+            {
+                UpdateCalibration(true);
+                RecalculateReferenceRotation();
+                firsttime = false;
+            }
 
-            if (!script.calibrate)
+            if (script != null && !script.calibrate)
+            {
                 return;
-            Debug.Log("calibrated");
+            }
+            if (script1 != null && !script1.calibrate)
+            {
+               
+               return;
+            }
+            
             UpdateCalibration(true);
             RecalculateReferenceRotation();
-            script.calibrate = false;
+            if (script != null)
+                script.calibrate = false;
+            if (script1 != null)
+                script1.calibrate = false;
             //transform.localRotation = orientation;
         }
 
